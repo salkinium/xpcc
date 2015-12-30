@@ -67,16 +67,16 @@ enum Frequency
 	MHz432      =  432 * MHz1,
 };
 
-static constexpr int
+static constexpr int ATTRIBUTE_UNUSED
 MHz(int f) { return (f == HzDontCare)? HzDontCare : (f / MHz1); }
-static constexpr uint32_t
+static constexpr uint32_t ATTRIBUTE_UNUSED
 u32MHz(int f) { return static_cast<uint32_t>(MHz(f)); }
-static constexpr int
+static constexpr int ATTRIBUTE_UNUSED
 kHz(int f) { return (f == HzDontCare)? HzDontCare : (f / kHz1); }
-static constexpr uint32_t
+static constexpr uint32_t ATTRIBUTE_UNUSED
 u32kHz(int f) { return static_cast<uint32_t>(kHz(f)); }
-static constexpr int
-Hz(int f)  { return (f == HzDontCare)? HzDontCare : (f / Hz1); }
+static constexpr int ATTRIBUTE_UNUSED
+Hz(int f) { return (f == HzDontCare)? HzDontCare : (f / Hz1); }
 
 /**
  * Errors that might prevent using a certain clock configuration
