@@ -65,13 +65,10 @@ pow(uint32_t base, uint8_t exponent)
  * preprocessor macro.
  */
 template<typename T>
-inline const T&
+inline constexpr T
 min(const T& a, const T& b)
 {
-	if (b < a)
-		return b;
-	else
-		return a;
+	return (b < a) ? b : a;
 }
 
 /**
@@ -86,13 +83,10 @@ min(const T& a, const T& b)
  * preprocessor macro.
  */
 template<typename T>
-inline const T&
+inline constexpr T
 max(const T& a, const T& b)
 {
-	if (a < b)
-		return b;
-	else
-		return a;
+	return (a < b) ? b : a;
 }
 
 /**
@@ -112,7 +106,7 @@ constexpr T
 max(const T a, const T b, const T c)
 {
 	return ( ( (b > c) ? b : c ) > a ) ?
-	         ( (b > c) ? b : c) : a;
+		 ( (b > c) ? b : c) : a;
 }
 
 /**
@@ -127,13 +121,10 @@ max(const T a, const T b, const T c)
  * once, unlike a preprocessor macro.
  */
 template<typename T, typename Compare>
-inline const T&
+inline constexpr T
 min(const T& a, const T& b, Compare compare)
 {
-	if (compare(b, a))
-		return b;
-	else
-		return a;
+	return compare(b, a) ? b : a;
 }
 
 /**
@@ -148,13 +139,10 @@ min(const T& a, const T& b, Compare compare)
  * once, unlike a preprocessor macro.
  */
 template<typename T, typename Compare>
-inline const T&
+inline constexpr T
 max(const T& a, const T& b, Compare compare)
 {
-	if (compare(a, b))
-		return b;
-	else
-		return a;
+	return compare(a, b) ? b : a;
 }
 
 }	// namespace xpcc
