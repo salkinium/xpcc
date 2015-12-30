@@ -107,14 +107,19 @@
 	#define	CONCAT5_(a,b,c,d,e)		CONCAT5__(a,b,c,d,e)
 	#define	CONCAT5__(a,b,c,d,e)	a ## b ## c ## d ## e
 
-	#ifdef XPCC__COMPILER_GCC
+	#if defined(XPCC__COMPILER_GCC) or defined(XPCC__COMPILER_CLANG)
 	#	define ALWAYS_INLINE  		inline __attribute__((always_inline))
 	#	define ATTRIBUTE_UNUSED		__attribute__((unused))
 	#	define ATTRIBUTE_WEAK		__attribute__ ((weak))
 	#	define ATTRIBUTE_ALIGNED(n)	__attribute__((aligned(n)))
 	#	define ATTRIBUTE_PACKED		__attribute__((packed))
-	#	define ATTRIBUTE_FASTCODE	__attribute__((section(".fastcode")))
-	#	define ATTRIBUTE_FASTDATA	__attribute__((section(".fastdata")))
+	#	ifndef XPCC__OS_HOSTED
+	#		define ATTRIBUTE_FASTCODE	__attribute__((section(".fastcode")))
+	#		define ATTRIBUTE_FASTDATA	__attribute__((section(".fastdata")))
+	#	else
+	#		define ATTRIBUTE_FASTCODE
+	#		define ATTRIBUTE_FASTDATA
+	#	endif
 	#	define ATTRIBUTE_MAY_ALIAS	__attribute__((__may_alias__))	// see http://dbp-consulting.com/tutorials/StrictAliasing.html
 	#	define likely(x)			__builtin_expect(!!(x), 1)
 	#	define unlikely(x)			__builtin_expect(!!(x), 0)
