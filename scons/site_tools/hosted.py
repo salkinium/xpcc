@@ -96,9 +96,9 @@ def generate(env, **kw):
 
 	# C++ flags
 	env['CXXFLAGS'] = [
-		"-std=c++11",
+		"-std=c++1y",
 #		"-Weffc++",
-		"-Woverloaded-virtual",
+		"-Woverloaded-virtual"
 	]
 
 	if 'CXXFLAGS' in os.environ:
